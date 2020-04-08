@@ -1,0 +1,16 @@
+name: PR Closer
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  close-pull-request:
+    runs-on: ubuntu-latest
+    name: Close Pull Request
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+          message: 🙅 We don't accept Pull Requests!! (this project is about it 😛)

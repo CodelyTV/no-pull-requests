@@ -1,0 +1,20 @@
+name: 'No Pull Requests'
+description: 'Automatically closes any open pull request'
+branding:
+  icon: 'alert-octagon'
+  color: 'red'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+  message:
+    description: 'Message to show when the pull request is closed'
+    required: false
+    default: '🙅 We do not accept Pull Requests!'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.message }}
+
